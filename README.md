@@ -1,6 +1,7 @@
 # Site for the Mood
 
-[TODO. There will be project description]
+[This site](https://andreyad1.github.io/20_mood/) displays jokes to improve your mood. 
+The site provides a new joke for every user entry.
 
 # Project Goals
 

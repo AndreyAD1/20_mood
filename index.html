@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <title>Настроение</title>
   <script id="quotes_json" type="application/json">
     [
@@ -12,14 +13,55 @@
         "phrase": "Собираюсь жить вечно, пока всё идёт нормально"
       },
       {
-        "phrase": "Вывеска над кафе — '\u003cМы открылись\u003e'. Что-то не так. Где же '\u003c/Мы открылись\u003e'?"
+        "phrase": "Вывеска над кафе — '\u003cМы открылись\u003e'. Что-то не так. Где же '\u003c /Мы открылись\u003e'?"
       },
       {
         "phrase": "Если ты будешь усердно работать по 8 часов в день, то обязательно станешь боссом и начнешь работать по 12"
+      },
+      {
+        "phrase": "-В этом санатории ужасно кормят!<br>-Это точно. Ещё и порции такие маленькие.",
+        "signature": "Вуди Аллен. Фильм 'Энни Холл'"
+      },
+      {
+        "phrase": "Потеряв своего лучшего друга, маршал Тито тяжело заболел. Болел-болел, болел-болел и через 40 лет умер.",
+        "signature": "Эмир Кустурица. Фильм 'Андерграунд'"
       }
     ]
   </script>
+  <style type="text/css">
+    body {
+      background-color: yellow;
+    }
+    h1 {
+      color: green;
+    }
+    .quote {
+      font-size: 18pt;
+    }
+  </style>
 </head>
 <body>
+  <div align="center" id="main">
+    <h1>Сайт для улучшения настроения!</h1>
+    <script>
+      function get_random_quote() {
+        var html_element = document.getElementById("quotes_json");
+        quotes_json = JSON.parse(html_element.innerHTML);
+        var random_index = Math.floor(Math.random() * quotes_json.length);
+        random_quote = quotes_json[random_index];
+        return random_quote;
+      }
+
+      var paragraph = document.createElement("p");
+      var quote = get_random_quote()
+      quoteHTML = "<q>"+quote.phrase+"</q>";
+      if (quote.signature) {
+        quoteHTML = quoteHTML+"<br>"+"<cite>"+quote.signature+"</cite>";
+      }
+      paragraph.innerHTML = quoteHTML;
+      paragraph.className = "quote";
+      main.appendChild(paragraph);
+    </script>
+  </div>
 </body>
 </html>
