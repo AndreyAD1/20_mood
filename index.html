@@ -13,13 +13,13 @@
         "phrase": "Собираюсь жить вечно, пока всё идёт нормально"
       },
       {
-        "phrase": "Вывеска над кафе — '\u003cМы открылись\u003e'. Что-то не так. Где же '\u003c /Мы открылись\u003e'?"
+        "phrase": "Вывеска над кафе — '\u003cМы открылись\u003e'. Что-то не так. Где же '\u003c/Мы открылись\u003e'?"
       },
       {
         "phrase": "Если ты будешь усердно работать по 8 часов в день, то обязательно станешь боссом и начнешь работать по 12"
       },
       {
-        "phrase": "-В этом санатории ужасно кормят!<br>-Это точно. Ещё и порции такие маленькие.",
+        "phrase": "-В этом санатории ужасно кормят!\n-Это точно. Ещё и порции такие маленькие.",
         "signature": "Вуди Аллен. Фильм 'Энни Холл'"
       },
       {
@@ -35,7 +35,7 @@
     h1 {
       color: green;
     }
-    .quote {
+    .quotation {
       font-size: 18pt;
     }
   </style>
@@ -43,24 +43,30 @@
 <body>
   <div align="center" id="main">
     <h1>Сайт для улучшения настроения!</h1>
+    <p id="quote" class="quotation"></p>
     <script>
-      function get_random_quote() {
+      function get_random_quotation() {
         var html_element = document.getElementById("quotes_json");
-        quotes_json = JSON.parse(html_element.innerHTML);
-        var random_index = Math.floor(Math.random() * quotes_json.length);
-        random_quote = quotes_json[random_index];
-        return random_quote;
+        quotations_json = JSON.parse(html_element.innerHTML);
+        var random_index = Math.floor(Math.random() * quotations_json.length);
+        random_quotation = quotations_json[random_index];
+        return random_quotation;
       }
 
-      var paragraph = document.createElement("p");
-      var quote = get_random_quote()
-      quoteHTML = "<q>"+quote.phrase+"</q>";
-      if (quote.signature) {
-        quoteHTML = quoteHTML+"<br>"+"<cite>"+quote.signature+"</cite>";
+      var paragraph = document.getElementById("quote");
+      var quotation_tag = document.createElement('q');
+      var quotation = get_random_quotation();
+      quotation_tag.textContent = quotation.phrase;
+      paragraph.appendChild(quotation_tag);
+      if (quotation.signature) {
+        main_block = document.getElementById("main");
+        signature_paragraph = document.createElement("p");
+        signature_tag = document.createElement("cite");
+        signature_tag.textContent = quotation.signature;
+        signature_paragraph.appendChild(signature_tag);
+        signature_paragraph.className = "quotation"
+        main_block.appendChild(signature_paragraph);
       }
-      paragraph.innerHTML = quoteHTML;
-      paragraph.className = "quote";
-      main.appendChild(paragraph);
     </script>
   </div>
 </body>
